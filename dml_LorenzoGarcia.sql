@@ -1,0 +1,35 @@
+--DML 
+--Creamos la tabla LGM_FACTURA_SIMPLIFICADA
+
+CREATE TABLE LGM_FACTURA_SIMPLIFICADA (
+  N_PEDIDO VARCHAR2(10) PRIMARY KEY,
+  CLIENTE VARCHAR2(50),
+  DNI_F VARCHAR2(10),
+  METODO_PAGO VARCHAR2(50),
+  MONTO_TOTAL NUMBER(10, 2)
+);
+--De las tablas LGM_PEDIDO y LGM_CLIENTE cogemos los datos para rellenar la tabla anteriormente creada
+
+INSERT INTO LGM_FACTURA_SIMPLIFICADA (N_PEDIDO, CLIENTE, DNI_F, METODO_PAGO, MONTO_TOTAL)
+SELECT p.ID_PEDIDO, c.EMAIL, c.dni, c.metodo_de_pago, p.precio_total
+FROM LGM_PEDIDO p
+JOIN LGM_CLIENTE c ON p.EMAIL_CLIENTE = c.EMAIL;
+
+--Consulta de inserción en la que se agregan datos a dos o más tablas:
+INSERT ALL
+INTO LGM_PAPEL (REF_INTERNA_PAPEL, COD_BARRAS, MARCA, PRECIO, STOCK, PESO_GRAMOS, PROVEEDOR_P) VALUES (1, '1234567890', 'Marca1', 10.99, 50, 100, 'PRV0002')
+INTO LGM_PAPEL (REF_INTERNA_PAPEL, COD_BARRAS, MARCA, PRECIO, STOCK, PESO_GRAMOS, PROVEEDOR_P) VALUES (2, '0987654321', 'Marca2', 12.99, 100, 150, 'PRV0003')
+INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PROV001', 'proveedor1@example.com', 'Calle 1', 123, 'CP001', 123456789)
+INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PROV002', 'proveedor2@example.com', 'Calle 2', 456, 'CP002', NULL)
+SELECT 1 FROM dual;
+
+--Consulta de actualización. La marca American Crafts ha aumentado sus precios en los papeles:
+UPDATE LGM_PAPEL
+SET PRECIO = PRECIO * 1.2
+WHERE MARCA = 'American Crafts';
+
+--Consulta delete. Vamos a borrar todos los adornos que no se han vendido nunca:
+DELETE FROM LGM_ADORNO
+WHERE REF_INTERNA_ADORNO NOT IN (
+SELECT REF_INTERNA_A
+FROM LGM_CONTIENE_ADORNO);
