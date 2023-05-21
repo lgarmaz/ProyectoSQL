@@ -13,7 +13,7 @@ CREATE TABLE LGM_PROVEEDOR (
 INSERT ALL
     INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PRV0001', 'contacto@americancrafts.com', 'Main St', 123, '84505', 911234567)
     INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PRV0002', 'contact@echoparkpaper.com', 'Nowhere Street', 1234, '90001', 934567890)
-    INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PRV0003', 'info@wermemorykeepers.com', 'Memory Lane', 9876, '84606')
+    INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PRV0003', 'info@wermemorykeepers.com', 'Memory Lane', 9876, '84606', NULL)
     INTO LGM_PROVEEDOR (ID_PROVEEDOR, EMAIL, CALLE, N, CP, TLF) VALUES ('PRV0004', 'contact@simplestories.com', 'Memory Lane', 1345, '84404', 955678908)
 SELECT 1 FROM DUAL;
 
